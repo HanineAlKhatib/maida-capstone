@@ -34,7 +34,7 @@ const Navbar = () => {
             <div className="px-8 py-2 md:flex md:space-x-4">
               <a
                 href="#"
-                className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:text-gray-900 hover:bg-gray-50 group transition duration-300"
+                className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:text-gray-900 group transition duration-300"
               >
                 Home
               </a>

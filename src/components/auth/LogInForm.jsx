@@ -8,23 +8,31 @@ const LogInForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Insert your API call logic here
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/signup`, {
-      method: "POST",
+
+    // API call logic
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+      // endpoint changed to /login
+      method: "POST", // method changed to POST
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ email, password }), // assuming your API expects an email instead of a username
     });
 
-    const data = await response.json();
-    console.log("Response from server:", data);
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Response from server:", data);
+      // Handle successful login here (e.g., redirect to dashboard or store tokens)
+    } else {
+      // Handle errors here (e.g., show error message to the user)
+      console.error("Login failed:", response.statusText);
+    }
   };
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex min-h-screen bg-neutral-100">
       <div className="m-auto max-w-lg w-full">
-        <div className="bg-white p-8 rounded-xl shadow-lg shadow-zinc-400">
+        <div className="bg-white p-8 rounded-xl shadow-lg shadow-zinc-300">
           <h2 className="text-3xl font-inter mb-6 text-gray-700 text-center">
             Log In
           </h2>
@@ -60,7 +68,10 @@ const LogInForm = () => {
           </form>
           <div className="text-center font-inter text-gray-700">
             Don't have an account?{" "}
-            <a href="#" className="text-primary font-inter hover:underline">
+            <a
+              href="/signup"
+              className="text-primary font-inter hover:underline"
+            >
               Sign Up
             </a>
           </div>

@@ -22,9 +22,9 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex min-h-screen bg-neutral-100">
       <div className="m-auto max-w-lg w-full">
-        <div className="bg-white p-8 rounded-xl shadow-lg shadow-zinc-400">
+        <div className="bg-white p-8 rounded-xl shadow-lg shadow-zinc-300">
           <h2 className="text-3xl font-inter mb-6 text-gray-700 text-center">
             Sign Up
           </h2>
@@ -71,7 +71,10 @@ const SignUpForm = () => {
           </form>
           <div className="text-center font-inter text-gray-700">
             Already have an account?{" "}
-            <a href="#" className="text-primary font-inter hover:underline">
+            <a
+              href="/login"
+              className="text-primary font-inter hover:underline"
+            >
               Login
             </a>
           </div>
