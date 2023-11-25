@@ -4,14 +4,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["Inter", "sans-serif"], // Assuming you want to fall back to sans-serif if Inter isn't available
-        "edu-tas": ["'Edu TAS Beginner'", "cursive"], // Use a single string for the font name and quote it if there are spaces
+        inter: ["Inter", "sans-serif"],
+        "edu-tas": ["'Edu TAS Beginner'", "cursive"],
       },
 
       colors: {
         primary: "#F94700",
         secondary: "#030057",
-        bgc: "#030057", // Consider giving a more descriptive name than 'bgc'
+        bgc: "#e7e7e7",
       },
     },
   },

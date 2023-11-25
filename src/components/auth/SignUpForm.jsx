@@ -1,6 +1,10 @@
 import { useState } from "react";
+<<<<<<< HEAD
+import PrimaryButton from "../reusables/PrimaryButton";
+=======
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import PrimaryButton from "../PrimaryButton";
+>>>>>>> origin/master
 
 const SignUpForm = () => {
   const [name, setUsername] = useState(""); // Changed from username to name
@@ -30,6 +34,10 @@ const SignUpForm = () => {
       console.error("Registration failed:", errorData);
     }
   };
+
+  //useEffect({
+
+  //}, [])
 
   return (
     <div className="flex min-h-screen bg-neutral-100">

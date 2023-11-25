@@ -1,20 +1,15 @@
 import Footer from "../../components/reusables/Footer";
 import Navbar from "../../components/reusables/Navbar";
+import Profile from "../../components/User/Profile";
 
-const Landing = () => {
+const ProfilePage = () => {
   return (
-<<<<<<< HEAD
     <>
       <Navbar />
+      <Profile />
       <Footer />
     </>
   );
 };
-=======
-    <div>Landing</div>
-    
-  )
-}
->>>>>>> origin/master
 
-export default Landing;
+export default ProfilePage;
