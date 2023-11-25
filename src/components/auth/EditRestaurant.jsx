@@ -57,9 +57,9 @@ const EditRestaurant = () => {
     };
 
     return (
-        <div className="container">
-            <h2>Edit Restaurant</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="container mx-auto p-4">
+            <h2 className="text-2xl font-bold mb-4">Edit Restaurant</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name field */}
                 <input
                     type="text"
@@ -67,17 +67,17 @@ const EditRestaurant = () => {
                     value={restaurant.name}
                     onChange={handleInputChange}
                     placeholder="Restaurant Name"
-                    className="form-control mb-2"
+                    className="form-input block w-full rounded-md border-gray-300"
                     required
                 />
-
+                
                 {/* Description field */}
                 <textarea
                     name="description"
                     value={restaurant.description}
                     onChange={handleInputChange}
                     placeholder="Restaurant Description"
-                    className="form-control mb-2"
+                    className="form-textarea block w-full rounded-md border-gray-300"
                     required
                 />
 
@@ -88,7 +88,7 @@ const EditRestaurant = () => {
                     value={restaurant.address}
                     onChange={handleInputChange}
                     placeholder="Restaurant Address"
-                    className="form-control mb-2"
+                    className="form-input block w-full rounded-md border-gray-300"
                     required
                 />
 
@@ -99,7 +99,7 @@ const EditRestaurant = () => {
                     value={restaurant.phone_number}
                     onChange={handleInputChange}
                     placeholder="Phone Number"
-                    className="form-control mb-2"
+                    className="form-input block w-full rounded-md border-gray-300"
                     required
                 />
 
@@ -110,7 +110,7 @@ const EditRestaurant = () => {
                     value={restaurant.email}
                     onChange={handleInputChange}
                     placeholder="Email"
-                    className="form-control mb-2"
+                    className="form-input block w-full rounded-md border-gray-300"
                     required
                 />
 
@@ -121,12 +121,13 @@ const EditRestaurant = () => {
                     value={restaurant.image}
                     onChange={handleInputChange}
                     placeholder="Image URL"
-                    className="form-control mb-2"
+                    className="form-input block w-full rounded-md border-gray-300"
                     required
                 />
-                <button type="submit" className="btn btn-primary">Update Restaurant</button>
+                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update Restaurant</button>
             </form>
         </div>
+
     );
 };
 
