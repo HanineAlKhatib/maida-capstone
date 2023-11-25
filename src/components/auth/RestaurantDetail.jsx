@@ -66,6 +66,11 @@ const RestaurantDetail = () => {
         setLoading(false);
     };
 
+    const handleEditDish = (menuId) => {
+        console.log("Edit Menu:", menuId);
+        // Implement navigation or modal opening for editing menu
+    };
+
     const handleEdit = (menuId) => {
         console.log("Edit Menu:", menuId);
         // Implement navigation or modal opening for editing menu
