@@ -1,33 +1,51 @@
 import { useState } from "react";
+<<<<<<< HEAD
 import PrimaryButton from "../reusables/PrimaryButton";
+=======
+import PrimaryButton from "../PrimaryButton";
+import { useNavigate } from 'react-router-dom';
+
+>>>>>>> origin/master
 
 const LogInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+//  const [username, setUsername] = useState("");
+const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    // API call logic
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
-      // endpoint changed to /login
-      method: "POST", // method changed to POST
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }), // assuming your API expects an email instead of a username
-    });
+  // API call logic
+  const response = await fetch(`http://localhost:8000/api/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Response from server:", data);
-      // Handle successful login here (e.g., redirect to dashboard or store tokens)
+  if (response.ok) {
+    const data = await response.json();
+    console.log("Response from server:", data);
+
+    localStorage.setItem('token', data.access_token);
+
+    // Check the user's role and navigate accordingly
+    const userRole = data.user.role; // Assuming the role is part of the user object
+    if(userRole === 'Owner') {
+      navigate('/main'); // Redirect to restaurant page
     } else {
-      // Handle errors here (e.g., show error message to the user)
-      console.error("Login failed:", response.statusText);
+      navigate('/'); // Redirect to landing page for customers
     }
-  };
+
+  } else {
+    // Handle errors here
+    console.error("Login failed:", response.statusText);
+  }
+};
+
 
   return (
     <div className="flex min-h-screen bg-neutral-100">
@@ -38,16 +56,17 @@ const LogInForm = () => {
           </h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <input
-                id="username"
-                type="text"
-                name="username"
-                className="w-full p-2 font-inter border border-gray-200 rounded-md focus:outline-none focus:border-gray-200 focus:ring-1 focus:ring-gray-300"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
+            <input
+              id="email"
+              type="email" // Change type to email
+              name="email"
+              className="w-full p-2 font-inter border border-gray-200 rounded-md focus:outline-none focus:border-gray-200 focus:ring-1 focus:ring-gray-300"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
             </div>
 
             <div className="mb-4">
@@ -67,7 +86,7 @@ const LogInForm = () => {
             </div>
           </form>
           <div className="text-center font-inter text-gray-700">
-            Don't have an account?{" "}
+            Dont have an account?{" "}
             <a
               href="/signup"
               className="text-primary font-inter hover:underline"
