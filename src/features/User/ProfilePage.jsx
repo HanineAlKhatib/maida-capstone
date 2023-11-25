@@ -1,15 +1,15 @@
 import Footer from "../../components/reusables/Footer";
 import Navbar from "../../components/reusables/Navbar";
-import LogInForm from "../../components/auth/LogInForm";
+import Profile from "../../components/User/Profile";
 
-const LogIn = () => {
+const ProfilePage = () => {
   return (
     <>
       <Navbar />
-      <LogInForm />
+      <Profile />
       <Footer />
     </>
   );
 };
 
-export default LogIn;
+export default ProfilePage;

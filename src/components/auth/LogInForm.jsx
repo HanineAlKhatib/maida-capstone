@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PrimaryButton from "../PrimaryButton";
+import PrimaryButton from "../reusables/PrimaryButton";
 
 const LogInForm = () => {
   const [email, setEmail] = useState("");

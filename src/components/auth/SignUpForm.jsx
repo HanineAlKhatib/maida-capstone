@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PrimaryButton from "../PrimaryButton";
+import PrimaryButton from "../reusables/PrimaryButton";
 
 const SignUpForm = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +20,10 @@ const SignUpForm = () => {
     const data = await response.json();
     console.log("Response from server:", data);
   };
+
+  //useEffect({
+
+  //}, [])
 
   return (
     <div className="flex min-h-screen bg-neutral-100">

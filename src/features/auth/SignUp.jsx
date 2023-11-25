@@ -1,11 +1,13 @@
-import Navbar from "../../components/Navbar";
+import Footer from "../../components/reusables/Footer";
+import Navbar from "../../components/reusables/Navbar";
 import SignUpForm from "../../components/auth/SignUpForm";
 
 const SignUp = () => {
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <SignUpForm />
+      <Footer />
     </>
   );
 };

@@ -1,7 +1,13 @@
+import Footer from "../../components/reusables/Footer";
+import Navbar from "../../components/reusables/Navbar";
+
 const Landing = () => {
   return (
-    <div>Landing</div>
-  )
-}
+    <>
+      <Navbar />
+      <Footer />
+    </>
+  );
+};
 
-export default Landing
+export default Landing;
