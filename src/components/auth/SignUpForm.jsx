@@ -1,24 +1,34 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import PrimaryButton from "../PrimaryButton";
 
 const SignUpForm = () => {
+  const [name, setUsername] = useState(""); // Changed from username to name
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState(""); // Added password confirmation
+
+  const navigate = useNavigate(); // Hook for navigation
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Insert your API call logic here
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/signup`, {
+
+    const response = await fetch('http://localhost:8000/api/register', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ name, email, password, password_confirmation: passwordConfirmation }), // Adjusted to match Laravel's expected fields
     });
 
-    const data = await response.json();
-    console.log("Response from server:", data);
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Response from server:", data);
+      navigate('/'); // Navigate to landing page on success
+    } else {
+      const errorData = await response.json();
+      console.error("Registration failed:", errorData);
+    }
   };
 
   return (
@@ -31,12 +41,12 @@ const SignUpForm = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <input
-                id="username"
+                id="name"
                 type="text"
-                name="username"
+                name="Name"
                 className="w-full p-2 font-inter border border-gray-200 rounded-md focus:outline-none focus:border-gray-200 focus:ring-1 focus:ring-gray-300"
-                placeholder="Username"
-                value={username}
+                placeholder="name"
+                value={name}
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
@@ -62,6 +72,18 @@ const SignUpForm = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                id="passwordConfirmation"
+                type="password"
+                name="passwordConfirmation"
+                className="w-full p-2 font-inter border border-gray-200 rounded-md focus:outline-none focus:border-gray-200 focus:ring-1 focus:ring-gray-300"
+                placeholder="Confirm Password"
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
                 required
               />
             </div>
