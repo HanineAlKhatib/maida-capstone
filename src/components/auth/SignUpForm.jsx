@@ -1,10 +1,6 @@
 import { useState } from "react";
-<<<<<<< HEAD
-import PrimaryButton from "../reusables/PrimaryButton";
-=======
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import PrimaryButton from "../PrimaryButton";
->>>>>>> origin/master
+import PrimaryButton from "../reusables/PrimaryButton";
 
 const SignUpForm = () => {
   const [name, setUsername] = useState(""); // Changed from username to name
