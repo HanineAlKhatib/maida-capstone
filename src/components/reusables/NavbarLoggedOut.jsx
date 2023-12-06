@@ -3,14 +3,13 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 
-const Navbar = () => {
+
+const NavbarLoggedOut = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+  const handleLogin = () => {
     navigate("/login"); // Redirect to login page after logout
   };
 
@@ -55,7 +54,7 @@ const Navbar = () => {
                 Browse
               </a>
               <a
-                href="/orders"
+                href="#"
                 className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:text-gray-900 hover:bg-gray-50 md:hover:bg-transparent"
               >
                 Orders
@@ -70,10 +69,10 @@ const Navbar = () => {
                 Cart
               </a>
               <button
-          onClick={handleLogout}
+          onClick={handleLogin}
           className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:text-gray-900 hover:bg-gray-50 md:hover:bg-transparent"
         >
-          Logout
+          Login
         </button>
             </div>
           </div>
@@ -83,4 +82,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarLoggedOut;

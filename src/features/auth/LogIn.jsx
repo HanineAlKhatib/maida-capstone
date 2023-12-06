@@ -1,11 +1,10 @@
 import Footer from "../../components/reusables/Footer";
-import Navbar from "../../components/reusables/Navbar";
 import LogInForm from "../../components/auth/LogInForm";
-
+import NavbarLoggedOut from "../../components/reusables/NavbarLoggedOut";
 const LogIn = () => {
   return (
     <>
-      <Navbar />
+      <NavbarLoggedOut />
       <LogInForm />
       <Footer />
     </>

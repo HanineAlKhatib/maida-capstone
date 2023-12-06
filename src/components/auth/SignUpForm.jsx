@@ -24,6 +24,10 @@ const SignUpForm = () => {
     if (response.ok) {
       const data = await response.json();
       console.log("Response from server:", data);
+      localStorage.setItem("token", data.access_token);
+      localStorage.setItem("role", data.user.role);
+
+      // Check the user's role and navigate accordingly
       navigate('/'); // Navigate to landing page on success
     } else {
       const errorData = await response.json();

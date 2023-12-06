@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 const Main = () => {
     const [restaurants, setRestaurants] = useState([]);
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+      localStorage.removeItem("token");
+      navigate("/login"); // Redirect to login page after logout
+    };
 
     const fetchOwnerRestaurants = async () => {
         const token = localStorage.getItem('token');
@@ -55,7 +60,14 @@ const Main = () => {
             <div className="flex justify-between items-center bg-gray-100 p-4 rounded-md mb-6 shadow-sm">
                 <h2 className="text-3xl font-bold italic text-red-600">Maida</h2>
                 <h3 className="text-2xl font-semibold">Chef Dashboard</h3>
-                <div></div> {/* Placeholder for potential future navigation items */}
+                <div>
+                    <button
+                        onClick={handleLogout}
+                        className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:text-gray-900 hover:bg-gray-50 md:hover:bg-transparent"
+                        >
+                        Logout
+                   </button>
+                </div> {/* Placeholder for potential future navigation items */}
             </div>
 
             {/* Dashboard Content */}

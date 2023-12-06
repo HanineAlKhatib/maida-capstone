@@ -1,10 +1,11 @@
 import Footer from "../../components/reusables/Footer";
 import Navbar from "../../components/reusables/Navbar";
 import NavbarLoggedOut from "../../components/reusables/NavbarLoggedOut";
-import RestaurantGrid from "../../components/RestaurantGrid";
+import RestaurantDetails from "../../components/RestaurantDetails";
 import { useState, useEffect } from "react";
 
-const Landing = () => {
+
+const RestaurantDisplay = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -16,11 +17,11 @@ const Landing = () => {
   return (
     <>
       {isLoggedIn ? <Navbar /> : <NavbarLoggedOut />}
-      <RestaurantGrid />
+      <RestaurantDetails />
       <Footer />
     </>
   );
 };
 
 
-export default Landing;
+export default RestaurantDisplay;

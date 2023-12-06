@@ -15,7 +15,8 @@ const EditRestaurant = () => {
 
     useEffect(() => {
         fetchRestaurant();
-    }, [id]);
+    }, []); 
+    
 
     const fetchRestaurant = async () => {
         const token = localStorage.getItem('token');
@@ -23,7 +24,7 @@ const EditRestaurant = () => {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
-        });
+        } [id]);
 
         if (response.ok) {
             const data = await response.json();
@@ -34,9 +35,13 @@ const EditRestaurant = () => {
     };
 
     const handleInputChange = (event) => {
-        setRestaurant({ ...restaurant, [event.target.name]: event.target.value });
+        const { name, value } = event.target;
+        setRestaurant((prevRestaurant) => ({
+            ...prevRestaurant,
+            [name]: value
+        }));
     };
-
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         const token = localStorage.getItem('token');
@@ -58,75 +63,103 @@ const EditRestaurant = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <h2 className="text-2xl font-bold mb-4">Edit Restaurant</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+                <h2 className="text-3xl font-bold text-center mb-6">Edit Restaurant</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name field */}
-                <input
+                <div>
+                    <label htmlFor="name" className="text-gray-700">Restaurant Name</label>
+                    <input
+                    id="name"
                     type="text"
                     name="name"
                     value={restaurant.name}
                     onChange={handleInputChange}
                     placeholder="Restaurant Name"
-                    className="form-input block w-full rounded-md border-gray-300"
+                    className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     required
-                />
+                    />
+                </div>
                 
                 {/* Description field */}
-                <textarea
+                <div>
+                    <label htmlFor="description" className="text-gray-700">Description</label>
+                    <textarea
+                    id="description"
                     name="description"
                     value={restaurant.description}
                     onChange={handleInputChange}
                     placeholder="Restaurant Description"
-                    className="form-textarea block w-full rounded-md border-gray-300"
+                    className="form-textarea mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     required
-                />
+                    />
+                </div>
 
                 {/* Address field */}
-                <input
+                <div>
+                    <label htmlFor="address" className="text-gray-700">Address</label>
+                    <input
+                    id="address"
                     type="text"
                     name="address"
                     value={restaurant.address}
                     onChange={handleInputChange}
                     placeholder="Restaurant Address"
-                    className="form-input block w-full rounded-md border-gray-300"
+                    className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     required
-                />
+                    />
+                </div>
 
                 {/* Phone Number field */}
-                <input
+                <div>
+                    <label htmlFor="phone_number" className="text-gray-700">Phone Number</label>
+                    <input
+                    id="phone_number"
                     type="tel"
                     name="phone_number"
                     value={restaurant.phone_number}
                     onChange={handleInputChange}
                     placeholder="Phone Number"
-                    className="form-input block w-full rounded-md border-gray-300"
+                    className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     required
-                />
+                    />
+                </div>
 
                 {/* Email field */}
-                <input
+                <div>
+                    <label htmlFor="email" className="text-gray-700">Email</label>
+                    <input
+                    id="email"
                     type="email"
                     name="email"
                     value={restaurant.email}
                     onChange={handleInputChange}
                     placeholder="Email"
-                    className="form-input block w-full rounded-md border-gray-300"
+                    className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     required
-                />
+                    />
+                </div>
 
                 {/* Image URL field */}
-                <input
+                <div>
+                    <label htmlFor="image" className="text-gray-700">Image URL</label>
+                    <input
+                    id="image"
                     type="url"
                     name="image"
                     value={restaurant.image}
                     onChange={handleInputChange}
                     placeholder="Image URL"
-                    className="form-input block w-full rounded-md border-gray-300"
+                    className="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                     required
-                />
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update Restaurant</button>
-            </form>
+                    />
+                </div>
+                
+                <button type="submit" className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200">Update Restaurant</button>
+                </form>
+            </div>
         </div>
+
 
     );
 };

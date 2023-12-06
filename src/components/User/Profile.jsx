@@ -1,14 +1,53 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const user = {
-    name: "John Doe",
-    email: "john@example.com",
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
     birthday: "1990-01-01",
-    // Other user details...
-  };
-
+  });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login'); // Redirect to login if no token is found
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:8000/api/user/profile`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data.name)
+          setUser({ 
+            ...user,
+            name: data.name,
+            email: data.email
+            
+            // birthday: data.birthday if you have it from the response
+          });
+        } else {
+          console.error('Failed to fetch user data:', response.statusText);
+          
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        
+      }
+    };
+
+    fetchData();
+  }, [navigate]);
 
   return (
     <div className="flex min-h-screen bg-neutral-100">
@@ -46,7 +85,7 @@ const Profile = () => {
           </div>
           <br></br>
           <div className="text-left font-edu-tas text-gray-700 text-2xl">
-            Ready to start cooking? We'll need some information about your home
+            Ready to start cooking? We will need some information about your home
             restaurant first.
           </div>
           <button

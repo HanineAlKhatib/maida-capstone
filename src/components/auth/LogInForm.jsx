@@ -25,12 +25,15 @@ const LogInForm = () => {
       console.log("Response from server:", data);
 
       localStorage.setItem("token", data.access_token);
+      localStorage.setItem("role", data.user.role);
 
       // Check the user's role and navigate accordingly
       const userRole = data.user.role; // Assuming the role is part of the user object
       if (userRole === "Owner") {
         navigate("/main"); // Redirect to restaurant page
-      } else {
+      }else if (userRole === "Delivery"){
+        navigate("/delivery");
+      }else{
         navigate("/"); // Redirect to landing page for customers
       }
     } else {

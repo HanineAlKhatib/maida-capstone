@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const CartItem = ({ item }) => {
   return (
     <div className="flex justify-between items-center border-b border-gray-300 py-2">
@@ -9,3 +10,4 @@ const CartItem = ({ item }) => {
 };
 
 export default CartItem;
+  
